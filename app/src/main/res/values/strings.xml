@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">hw_2_5_month</string>
+    <string name="go">GO</string>
+    <string name="name">Name</string>
+    <string name="percentage">Percentage</string>
+    <string name="name1">Name</string>
 </resources>

@@ -6,16 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-    <EditText
-        android:id="@+id/first_name"
+    <ImageView
+        android:id="@+id/img_love"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:src="@drawable/love"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/edit_text"
+        android:id="@+id/first_name"
+        android:layout_width="match_parent"
+        android:hint="@string/name1"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_love" />
+
+    <EditText
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_text"
         android:id="@+id/second_name"
+        android:hint="Name"
+        android:textAlignment="center"
+        android:textSize="30sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,11 +44,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_go"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FC98D8"
+        android:text="@string/go"
+        android:textSize="30sp"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/second_name" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

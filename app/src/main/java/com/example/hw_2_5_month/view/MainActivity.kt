@@ -36,10 +36,9 @@ class MainActivity : AppCompatActivity() {
                         intent.putExtra("percentage", response.body()?.percentage)
                         startActivity(intent)
                     }
-
                     override fun onFailure(call: Call<LoveModel>, t: Throwable) {
                         Log.e("MainActivity", "onFailure: ${t.message}")
-                        // Show a Toast or Snackbar here to notify the user of the failure.
+
                     }
                 })
             }
