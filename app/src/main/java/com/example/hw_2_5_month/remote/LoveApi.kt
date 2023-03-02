@@ -1,6 +1,5 @@
-package com.example.hw_2_5_month.model
+package com.example.hw_2_5_month.remote
 
-import com.example.hw_2_5_month.model.LoveModel
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query

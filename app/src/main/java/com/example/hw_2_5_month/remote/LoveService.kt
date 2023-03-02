@@ -1,6 +1,5 @@
-package com.example.hw_2_5_month.presenter
+package com.example.hw_2_5_month.remote
 
-import com.example.hw_2_5_month.model.LoveApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -1,4 +1,4 @@
-package com.example.hw_2_5_month.model
+package com.example.hw_2_5_month.remote
 
 import com.google.gson.annotations.SerializedName
 data class LoveModel(

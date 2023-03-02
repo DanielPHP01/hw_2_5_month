@@ -1,4 +1,4 @@
-package com.example.hw_2_5_month.view
+package com.example.hw_2_5_month.viewmodel
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
