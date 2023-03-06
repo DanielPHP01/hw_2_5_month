@@ -4,4 +4,6 @@
     <string name="name">Name</string>
     <string name="percentage">Percentage</string>
     <string name="name1">Name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
