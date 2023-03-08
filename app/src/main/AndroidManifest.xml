@@ -18,7 +18,7 @@
             android:name=".viewmodel.SecondActivity"
             android:exported="false" />
         <activity
-            android:name=".viewmodel.MainActivity"
+            android:name="com.example.hw_2_5_month.viewmodel.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
