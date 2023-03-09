@@ -1,12 +1,15 @@
 package com.example.hw_2_5_month.viewmodel.board
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.navigateUp
+import com.example.hw_2_5_month.R
 import com.example.hw_2_5_month.databinding.FragmentOnBoardPageBinding
 import com.example.hw_2_5_month.remote.SharedPrefsPreferences
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,6 +69,7 @@ class OnBoardPageFragment(
 
         binding.btnStart.setOnClickListener {
             preferences.setBoardingShowed(true)
+            Log.e("ololo", "initListeners: ", )
             findNavController().navigateUp()
         }
     }

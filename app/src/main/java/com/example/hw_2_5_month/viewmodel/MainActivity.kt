@@ -18,7 +18,8 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: LoveViewModel by viewModels()
- var navController: NavController? = null
+    lateinit var navController: NavController
+
     @Inject
     lateinit var preferences: SharedPrefsPreferences
 
@@ -27,15 +28,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        navController = findNavController(R.id.nav_host_fragment)
         initClicker()
         prefCheck()
-        //prefCheck()
     }
 
 
     private fun prefCheck() {
         if (!preferences.isBoardingShowed()) {
-           navController?.navigate(R.id.boardFragment)
+            navController.navigate(R.id.onBoardPageFragment)
         }
     }
 
