@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.example.hw_2_5_month.App
 import com.example.hw_2_5_month.R
 import com.example.hw_2_5_month.databinding.ActivityMainBinding
 import com.example.hw_2_5_month.remote.SharedPrefsPreferences
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             btnGo.setOnClickListener {
                 viewModel.getLiveLove(firstName.text.toString(),secondName.text.toString()).observe(this@MainActivity,
                     Observer {
-                        Log.e("ololo", "initClicker: $it", )
+                        Log.e("ololo", "initClicker: $it")
                         val intent = Intent(this@MainActivity, SecondActivity::class.java)
                         intent.putExtra("first", it.firstName)
                         intent.putExtra("second", it.secondName)
@@ -55,6 +57,21 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                     })
             }
+            viewModel.getLiveLove(
+                firstName = firstName.text.toString(),
+                secondName = secondName.text.toString()
+            ).observe(this@MainActivity,
+                Observer {
+
+                    App.appDatabase.loveDao().insert(it)
+
+                    Log.e("ololo", "initListener: $it")
+                    navController.navigate(
+                        R.id.secondActivity, bundleOf(
+                            "model" to it
+                        )
+                    )
+                })
         }
     }
 }
