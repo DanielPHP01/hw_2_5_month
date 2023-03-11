@@ -3,10 +3,9 @@ package com.example.hw_2_5_month.viewmodel
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.hw_2_5_month.App
@@ -20,7 +19,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: LoveViewModel by viewModels()
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
 
     @Inject
     lateinit var preferences: SharedPrefsPreferences
@@ -31,14 +30,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         navController = findNavController(R.id.nav_host_fragment)
-        initClicker()
         prefCheck()
+        initClicker()
     }
 
 
     private fun prefCheck() {
         if (!preferences.isBoardingShowed()) {
-            navController.navigate(R.id.onBoardPageFragment)
+            navController.navigate(R.id.boardFragment)
         }
     }
 
@@ -46,8 +45,10 @@ class MainActivity : AppCompatActivity() {
     private fun initClicker() {
         with(binding) {
             btnGo.setOnClickListener {
-                viewModel.getLiveLove(firstName.text.toString(),secondName.text.toString()).observe(this@MainActivity,
-                    Observer {
+                viewModel.getLiveLove(firstName.text.toString(), secondName.text.toString())
+                    .observe(
+                        this@MainActivity
+                    ) {
                         Log.e("ololo", "initClicker: $it")
                         val intent = Intent(this@MainActivity, SecondActivity::class.java)
                         intent.putExtra("first", it.firstName)
@@ -55,23 +56,22 @@ class MainActivity : AppCompatActivity() {
                         intent.putExtra("percentage", it.percentage)
                         intent.putExtra("result", it.result)
                         startActivity(intent)
-                    })
+                    }
             }
-            viewModel.getLiveLove(
-                firstName = firstName.text.toString(),
-                secondName = secondName.text.toString()
-            ).observe(this@MainActivity,
-                Observer {
-
-                    App.appDatabase.loveDao().insert(it)
-
-                    Log.e("ololo", "initListener: $it")
-                    navController.navigate(
-                        R.id.secondActivity, bundleOf(
-                            "model" to it
-                        )
-                    )
-                })
+//            viewModel.getLiveLove(
+//                firstName = firstName.text.toString(),
+//                secondName = secondName.text.toString()
+//            ).observe(this@MainActivity
+//            ) {
+//
+//                App.appDatabase.loveDao().insert(it)
+//
+//                Log.e("ololo", "initListener: $it")
+//                findNavController(
+//                    R.id.secondActivity
+//                )
+//            }
         }
     }
 }
+

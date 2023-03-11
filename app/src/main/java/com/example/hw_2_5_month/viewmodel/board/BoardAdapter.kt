@@ -12,8 +12,7 @@ class BoardAdapter(
     fm: FragmentManager,
     private var listenerSkip: () -> Unit,
     private var listenerNext: () -> Unit,
-
-    ) : FragmentStatePagerAdapter(fm) {
+) : FragmentStatePagerAdapter(fm) {
 
     private val listBoarding = arrayOf(
         BoardModel(
@@ -42,8 +41,8 @@ class BoardAdapter(
 
     override fun getItem(position: Int): Fragment {
         val data = bundleOf("onBoard" to listBoarding[position])
-        val fragment = OnBoardPageFragment(listenerSkip,listenerNext)
-        fragment.arguments = data
-        return fragment
+        return OnBoardPageFragment(listenerSkip, listenerNext).apply {
+            arguments = data
+        }
     }
 }

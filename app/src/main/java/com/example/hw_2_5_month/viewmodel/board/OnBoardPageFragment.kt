@@ -14,16 +14,24 @@ import com.example.hw_2_5_month.databinding.FragmentOnBoardPageBinding
 import com.example.hw_2_5_month.remote.SharedPrefsPreferences
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
 @AndroidEntryPoint
 @Suppress("DEPRECATION")
-class OnBoardPageFragment(
-    private var listenerSkip: () -> Unit,
-    private var listenerNext: () -> Unit,
-) : Fragment() {
+class OnBoardPageFragment : Fragment {
+    private lateinit var listenerNext: () -> Unit
+    private lateinit var listenerSkip: () -> Unit
+
     @Inject
     lateinit var preferences: SharedPrefsPreferences
-
     private lateinit var binding: FragmentOnBoardPageBinding
+
+    constructor() // public default constructor
+
+    constructor(listenerSkip: () -> Unit, listenerNext: () -> Unit) : this() {
+        this.listenerSkip = listenerSkip
+        this.listenerNext = listenerNext
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,19 +48,21 @@ class OnBoardPageFragment(
     }
 
     private fun initViews() {
-        arguments.let {
-            val data = it?.getSerializable("onBoard") as BoardModel
-            binding.tvTitleBoard.text = data.title
-            binding.tvDescBoard.text = data.description
-            data.img?.let { it1 -> binding.imgBoard.setImageResource(it1) }
-            binding.btnSkip.isVisible = data.isLast == false
-            binding.btnNext.isVisible = data.isLast == false
-            binding.btnStart.isVisible = data.isLast == true
+        arguments?.let {
+            val data = it.getSerializable("onBoard") as? BoardModel
+            if (data != null) {
+                binding.tvTitleBoard.text = data.title
+                binding.tvDescBoard.text = data.description
+                data.img?.let { it1 -> binding.imgBoard.setImageResource(it1) }
+                binding.btnSkip.isVisible = data.isLast == false
+                binding.btnNext.isVisible = data.isLast == false
+                binding.btnStart.isVisible = data.isLast == true
 
-            if (data.isLast == true) {
-                binding.pageBoard.setBackgroundResource(data.bg)
-            } else {
-                binding.pageBoard.setBackgroundResource(data.bg)
+                if (data.isLast == true) {
+                    binding.pageBoard.setBackgroundResource(data.bg)
+                } else {
+                    binding.pageBoard.setBackgroundResource(data.bg)
+                }
             }
         }
     }
@@ -69,8 +79,9 @@ class OnBoardPageFragment(
 
         binding.btnStart.setOnClickListener {
             preferences.setBoardingShowed(true)
-            Log.e("ololo", "initListeners: ", )
-            findNavController().navigateUp()
+            Log.e("ololo", "initListeners: ")
+            findNavController().navigate(R.id.onBoardPageFragment)
+            binding.pageBoard.visibility = View.GONE
         }
     }
 }
