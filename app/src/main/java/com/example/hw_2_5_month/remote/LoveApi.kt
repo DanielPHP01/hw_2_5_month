@@ -5,7 +5,8 @@ import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface LoveApi {
-    @GET("getPercentage")
+    @GET("/users/register/")
+
     fun calculatePercentage(
         @Query("fname") firstName: String,
         @Query("sname") secondName: String,

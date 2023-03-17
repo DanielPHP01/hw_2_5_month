@@ -53,7 +53,7 @@ class OnBoardPageFragment : Fragment {
             if (data != null) {
                 binding.tvTitleBoard.text = data.title
                 binding.tvDescBoard.text = data.description
-                data.img?.let { it1 -> binding.imgBoard.setImageResource(it1) }
+                data.img?.let { it1 -> binding.animationView.setImageResource(it1) }
                 binding.btnSkip.isVisible = data.isLast == false
                 binding.btnNext.isVisible = data.isLast == false
                 binding.btnStart.isVisible = data.isLast == true
@@ -80,8 +80,7 @@ class OnBoardPageFragment : Fragment {
         binding.btnStart.setOnClickListener {
             preferences.setBoardingShowed(true)
             Log.e("ololo", "initListeners: ")
-            findNavController().navigate(R.id.onBoardPageFragment)
-            binding.pageBoard.visibility = View.GONE
+            findNavController().navigateUp()
         }
     }
 }

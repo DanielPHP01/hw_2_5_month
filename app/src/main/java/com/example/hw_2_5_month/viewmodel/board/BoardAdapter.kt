@@ -16,21 +16,21 @@ class BoardAdapter(
 
     private val listBoarding = arrayOf(
         BoardModel(
-            R.drawable.img,
+            R.raw.heart,
             "To-do list!",
             "Here you can write down something important or make a schedule for tomorrow:)",
             false,
             R.color.page1
         ),
         BoardModel(
-            R.drawable.img_1,
+            R.raw.love_dog,
             "Share your crazy idea ^_^",
             "You can easily share with your report, list or schedule and it's convenient",
             false,
             R.color.page2
         ),
         BoardModel(
-            R.drawable.img_2, "Flexibility",
+            R.raw.skameika, "Flexibility",
             "Your note with you at home, at work, even at the resort",
             true,
             R.color.page3
